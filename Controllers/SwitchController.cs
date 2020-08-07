@@ -14,6 +14,7 @@ using WemoSwitchAutomation.Resources;
 namespace WemoSwitchAutomation.Controllers
 {
     [Route("[controller]")]
+    [Route("api/[controller")]
     public class SwitchController : ControllerBase
     {
         private ILogger Logger { get; }
