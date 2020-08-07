@@ -12,4 +12,4 @@ RUN dotnet publish --no-restore -c Release -o out
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 WORKDIR /app
 COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", "wemo-switch-automation.dll"]
+ENTRYPOINT ["dotnet", "WemoSwitchAutomation.dll"]

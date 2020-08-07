@@ -236,3 +236,4 @@ _Pvt_Extensions
 
 # Application
 switch.json
+**/logs/

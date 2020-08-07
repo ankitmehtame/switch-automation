@@ -19,7 +19,7 @@ namespace WemoSwitchAutomation
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration(x => x.AddJsonFile("switch.json"))
+                .ConfigureAppConfiguration(x => x.AddJsonFile("switch.json", true).AddJsonFile("conf/switch.json", true))
                 .UseSerilog((b, c) => c.ReadFrom.Configuration(b.Configuration))
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
