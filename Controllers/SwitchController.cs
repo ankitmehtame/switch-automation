@@ -29,8 +29,8 @@ namespace WemoSwitchAutomation.Controllers
         }
 
         [HttpPost]
-        [Route("on")]
-        public async Task TurnOn(string id)
+        [Route("on/{id}")]
+        public async Task TurnOn([FromRoute] string id)
         {
             try
             {
@@ -59,8 +59,8 @@ namespace WemoSwitchAutomation.Controllers
         }
 
         [HttpPost]
-        [Route("off")]
-        public async Task TurnOff(string id)
+        [Route("off/{id}")]
+        public async Task TurnOff([FromRoute] string id)
         {
             try
             {
@@ -89,8 +89,8 @@ namespace WemoSwitchAutomation.Controllers
         }
 
         [HttpPost]
-        [Route("toggle")]
-        public async Task Toggle(string id)
+        [Route("toggle/{id}")]
+        public async Task Toggle([FromRoute] string id)
         {
             try
             {
@@ -121,8 +121,8 @@ namespace WemoSwitchAutomation.Controllers
         }
 
         [HttpGet]
-        [Route("")]
-        public async Task<string> GetState(string id)
+        [Route("{id}")]
+        public async Task<string> GetState([FromRoute] string id)
         {
             try
             {
