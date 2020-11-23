@@ -8,10 +8,10 @@
     <EmbeddedResource Include="Resources/GetSwitchStateRequest.xml"/>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Serilog.AspNetCore" Version="3.4.0"/>
-    <PackageReference Include="Serilog.Sinks.RollingFile" Version="3.3.0"/>
-    <PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0"/>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1"/>
+    <PackageReference Include="Serilog.AspNetCore" Version="*"/>
+    <PackageReference Include="Serilog.Sinks.RollingFile" Version="*"/>
+    <PackageReference Include="Serilog.Settings.Configuration" Version="*"/>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="*"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="switch.json" CopyToOutputDirectory="PreserveNewset" CopyToPublishDirectory="PreserveNewest"/>

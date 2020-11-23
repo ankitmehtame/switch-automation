@@ -16,7 +16,7 @@ docker run -it --rm -p 5001:443 -p 5000:80  --name switch-automation switch-auto
 ### To save image locally
 From the root directory
 ```
-docker save -o <local path>\switch-automation_0.n.tar switch-automation:0.n
+docker save -o <local path>\switch-automation_0.n.tar switch-automation:latest switch-automation:0.n
 ```
 
 ### To load image
