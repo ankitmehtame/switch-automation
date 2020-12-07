@@ -1,0 +1,53 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master, build ]
+  pull_request:
+
+env:
+  IMAGE_NAME: switch-automation
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0 # avoid shallow clone so nbgv can do its work.
+
+    - uses: dotnet/nbgv@master
+      with:
+        setAllVars: true
+      id: nbgv
+
+    - name: Versioning
+      run: echo ${{ steps.nbgv.outputs.SemVer2 }}
+        
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag $IMAGE_NAME
+
+    - name: Log into registry
+      run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+      
+    - name: Tag image version
+      run: |
+          IMAGE_ID=${{ secrets.DOCKER_USER }}/$IMAGE_NAME
+          # Change all uppercase to lowercase
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+          IMAGE_VERSION=${{ steps.nbgv.outputs.SimpleVersion }}
+          echo "IMAGE_ID=$IMAGE_ID" >> $GITHUB_ENV
+          echo "IMAGE_VERSION=$IMAGE_VERSION" >> $GITHUB_ENV
+          docker tag $IMAGE_NAME $IMAGE_ID:$IMAGE_VERSION
+
+    - name: Push
+      run: docker push $IMAGE_ID:$IMAGE_VERSION
+
+    - name: Tag latest
+      run: |
+          docker tag $IMAGE_NAME $IMAGE_ID:latest
+          docker push $IMAGE_ID:latest
+      if: github.ref == 'refs/heads/master'
