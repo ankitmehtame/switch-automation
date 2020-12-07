@@ -23,7 +23,7 @@ namespace WemoSwitchAutomation
         }
 
         public static string InfoVersion = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
-        public static string AssemblyVersion = Assembly.GetEntryAssembly().GetName().Version.ToString(2);
+        public static string AssemblyVersion = Assembly.GetEntryAssembly().GetName().Version.ToString(3);
 
         public IConfiguration Configuration { get; }
 
