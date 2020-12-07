@@ -235,5 +235,4 @@ _Pvt_Extensions
 .fake/
 
 # Application
-switch.json
 **/logs/
