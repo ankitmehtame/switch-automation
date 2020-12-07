@@ -12,6 +12,7 @@
     <PackageReference Include="Serilog.Sinks.RollingFile" Version="*"/>
     <PackageReference Include="Serilog.Settings.Configuration" Version="*"/>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="*"/>
+    <PackageReference Include="Nerdbank.GitVersioning" Version="*"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="switch.json" CopyToOutputDirectory="PreserveNewset" CopyToPublishDirectory="PreserveNewest"/>
