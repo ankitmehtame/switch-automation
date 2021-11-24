@@ -1,15 +1,15 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build-env
-WORKDIR /app
+FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
+WORKDIR /source
 EXPOSE 80
 
-COPY . ./
-RUN bash -c 'find .'
-RUN dotnet restore
+COPY *.csproj .
+RUN dotnet restore --runtime linux-x64
 
-RUN dotnet publish --no-restore -c Release -o out
+COPY . .
+RUN dotnet publish --no-restore -c Release -o /app
 
 # Build runtime image
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
+FROM mcr.microsoft.com/dotnet/aspnet:3.1
 WORKDIR /app
-COPY --from=build-env /app/out .
+COPY --from=build /app .
 ENTRYPOINT ["dotnet", "WemoSwitchAutomation.dll"]
