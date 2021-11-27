@@ -145,6 +145,28 @@ namespace WemoSwitchAutomation.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("{id}")]
+        public async Task SetState([FromRoute] string id, [FromBody] SwitchAction action)
+        {
+            var switchName = id;
+            Logger.LogDebug($"Request to set state of switch {switchName} to {action.Action}");
+            switch(action.Action)
+            {
+                case SwitchActionType.On:
+                    await TurnOn(id);
+                    break;
+                case SwitchActionType.Off:
+                    await TurnOff(id);
+                    break;
+                case SwitchActionType.Toggle:
+                    await Toggle(id);
+                    break;
+                default:
+                    throw new InvalidOperationException($"Unknown action {action} request for switch {id}");
+            }
+        }
+
         private async Task SwitchOn(string ip)
         {
             var request = SendSwitchOnOffRequest(ip, AllResources.SwitchOnRequestContent);
