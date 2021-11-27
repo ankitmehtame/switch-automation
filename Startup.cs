@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,14 +31,18 @@ namespace WemoSwitchAutomation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers().AddJsonOptions(j =>
+            {
+                j.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
             services.AddControllers();
             services.AddHttpClient();
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Version = AssemblyVersion,
-                    Title = "Wemo Switch Automation",
-                    Description = "v" + InfoVersion
-                }));
+            {
+                Version = AssemblyVersion,
+                Title = "Wemo Switch Automation",
+                Description = "v" + InfoVersion
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
