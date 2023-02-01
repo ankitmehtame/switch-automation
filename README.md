@@ -1,3 +1,5 @@
+[![Docker Image CI](https://github.com/ankitmehtame/switch-automation/actions/workflows/docker-image.yml/badge.svg)](https://github.com/ankitmehtame/switch-automation/actions/workflows/docker-image.yml)
+
 # Switch Automation
 Exposes api for switches over REST
 
