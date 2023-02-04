@@ -5,7 +5,15 @@ EXPOSE 80
 ARG TARGETPLATFORM
 
 COPY *.csproj .
-RUN dotnet restore --runtime linux-x64
+RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
+        RID=linux-x64 ; \
+    elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
+        RID=linux-arm64 ; \
+    elif [ "$TARGETPLATFORM" = "linux/arm/v7" ] || [ "$TARGETPLATFORM" = "linux/arm/v8" ]; then \
+        RID=linux-arm ; \
+    fi \
+    && echo "dotnet restore --runtime $RID" \
+    && dotnet restore --runtime $RID
 
 COPY . .
 RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
