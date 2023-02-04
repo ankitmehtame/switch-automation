@@ -1,4 +1,5 @@
-[![Docker Image CI](https://github.com/ankitmehtame/switch-automation/actions/workflows/docker-image.yml/badge.svg)](https://github.com/ankitmehtame/switch-automation/actions/workflows/docker-image.yml)
+[![Docker Image CI](https://github.com/ankitmehtame/switch-automation/actions/workflows/docker-image.yml/badge.svg)](https://github.com/ankitmehtame/http-forwarder/actions/workflows/docker-image.yml)
+![Docker Image Version (tag latest semver)](https://img.shields.io/docker/v/ankitmehtame/switch-automation/latest?color=blue)
 
 # Switch Automation
 Exposes api for switches over REST
