@@ -27,7 +27,7 @@ RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
     && dotnet publish --no-restore --runtime $RID -c Release -o /app
 
 # Build runtime image
-FROM --platform=$TARGETPLATFORM mcr.microsoft.com/dotnet/aspnet:3.1-buster-slim
+FROM --platform=$TARGETPLATFORM mcr.microsoft.com/dotnet/aspnet:3.1
 WORKDIR /app
 COPY --from=build /app .
 ENTRYPOINT ["dotnet", "WemoSwitchAutomation.dll"]
